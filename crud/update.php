@@ -1,8 +1,10 @@
 <?php
-include_once 'students.php';
+$conn = mysqli_connect("localhost", "root", "", "students");
 if (count($_POST)>0){
-    mysqli_query($conn,"UPDATE students SET nameOfstudent'".$_POST['nameOfstudent']."',age='". $_POST['age']."' email='" . $_POST['email']. "' WHERE id='".$_POST['id']."'");
+    mysqli_query($conn,"UPDATE studentsdata SET nameOfstudent='".$_POST['nameOfstudent']."',age='". $_POST['age']."' ,email='" . $_POST['email']. "' WHERE id='".$_POST['id']."'");
 $alert = "Record successfully updated";
+header("Location: students.php");
+  exit();
 }
 $result = mysqli_query($conn,"SELECT * FROM studentsdata WHERE id='".$_GET['id']."'");
 $row = mysqli_fetch_array($result);
@@ -30,5 +32,6 @@ $row = mysqli_fetch_array($result);
 
 
     </form>
+
 </body>
 </html>
